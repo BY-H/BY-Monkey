@@ -44,6 +44,10 @@ func Start(in io.Reader, out io.Writer) {
 			return
 		}
 
+		if line == "" {
+			continue
+		}
+
 		l := lexer.New(line)
 		p := parser.New(l)
 		program := p.ParseProgram()
