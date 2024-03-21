@@ -1,6 +1,6 @@
 package object
 
-// 采用封装一个Mpa的方式来实现对应的环境
+// 采用封装一个Map的方式来实现对应的环境
 
 type Environment struct {
 	store map[string]Object
