@@ -52,10 +52,13 @@ func (l *Lexer) NextToken() token.Token {
 		} else {
 			tok = newToken(token.ASSIGN, l.ch)
 		}
+		break
 	case '+':
 		tok = newToken(token.PLUS, l.ch)
+		break
 	case '-':
 		tok = newToken(token.MINUS, l.ch)
+		break
 	case '!':
 		if l.peekChar() == '=' {
 			ch := l.ch
@@ -68,38 +71,54 @@ func (l *Lexer) NextToken() token.Token {
 		} else {
 			tok = newToken(token.BANG, l.ch)
 		}
+		break
 	case '/':
 		tok = newToken(token.SLASH, l.ch)
+		break
 	case '*':
 		tok = newToken(token.ASTERISK, l.ch)
+		break
 	case '<':
 		tok = newToken(token.LT, l.ch)
+		break
 	case '>':
 		tok = newToken(token.GT, l.ch)
+		break
 	case ';':
 		tok = newToken(token.SEMICOLON, l.ch)
+		break
 	case '(':
 		tok = newToken(token.LPAREN, l.ch)
+		break
 	case ')':
 		tok = newToken(token.RPAREN, l.ch)
+		break
 	case ',':
 		tok = newToken(token.COMMA, l.ch)
+		break
 	case '{':
 		tok = newToken(token.LBRACE, l.ch)
+		break
 	case '}':
 		tok = newToken(token.RBRACE, l.ch)
+		break
 	case '"':
 		tok.Type = token.STRING
 		tok.Literal = l.readString()
+		break
 	case '[':
 		tok = newToken(token.LBRACKET, l.ch)
+		break
 	case ']':
 		tok = newToken(token.RBRACKET, l.ch)
+		break
 	case ':':
 		tok = newToken(token.COLON, l.ch)
+		break
 	case 0:
 		tok.Literal = ""
 		tok.Type = token.EOF
+		break
 	default:
 		if isLetter(l.ch) {
 			tok.Literal = l.readIdentifier()

@@ -19,8 +19,6 @@ func Eval(node ast.Node, env *object.Environment) object.Object {
 		return evalProgram(n, env)
 	case *ast.BlockStatement:
 		return evalBlockStatement(n, env)
-	case *ast.ExpressionStatement:
-		return Eval(n.Expression, env)
 	case *ast.ReturnStatement:
 		val := Eval(n.ReturnValue, env)
 		if isError(val) {
@@ -35,6 +33,8 @@ func Eval(node ast.Node, env *object.Environment) object.Object {
 		env.Set(n.Name.Value, val)
 
 	// 表达式
+	case *ast.ExpressionStatement:
+		return Eval(n.Expression, env)
 	case *ast.ArrayLiteral:
 		elements := evalExpressions(n.Elements, env)
 		if len(elements) == 1 && isError(elements[0]) {
@@ -344,8 +344,8 @@ func evalArrayIndexExpression(
 ) object.Object {
 	arrayObject := array.(*object.Array)
 	idx := index.(*object.Integer).Value
-	max := int64(len(arrayObject.Elements) - 1)
-	if idx > max || idx < 0 {
+	maxn := int64(len(arrayObject.Elements) - 1)
+	if idx > maxn || idx < 0 {
 		return NULL
 	}
 	return arrayObject.Elements[idx]
