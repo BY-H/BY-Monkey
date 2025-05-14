@@ -1,0 +1,13 @@
+function eval(astNode) {
+    if (astNode is intergerLiteral) {
+        return astNode.integerValue
+    } else if (astNode is infixExpression) {
+        leftEvaluated = eval(astNode.Left)
+        rightEvaluated = eval(astNode.right)
+        if (astNode.Operator == "+") {
+            return leftEvaluated + rightEvaluated
+        } else if (astNode.Operator == "-") {
+            return leftEvaluated - rightEvaluated
+        }
+    }
+}

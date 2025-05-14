@@ -1,0 +1,6 @@
+let x = 10;
+let y = 12 * 29;
+
+let add = fn(a, b) {
+	return  a + b;
+};

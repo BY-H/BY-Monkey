@@ -1,0 +1,7 @@
+// InfixExpression 中缀表达式
+type InfixExpression struct {
+	Token    token.Token // 中缀词法单元，如+
+	Left     Expression
+	Operator string
+	Right    Expression
+}

@@ -1,0 +1,6 @@
+type (
+	// prefixParseFn 前缀解析函数
+	prefixParseFn func() ast.Expression
+	// infixParseFn 中缀解析函数（要接受另外一个ast.Expression作为参数，因为中缀表达式有左值）
+	infixParseFn func(ast.Expression) ast.Expression
+)

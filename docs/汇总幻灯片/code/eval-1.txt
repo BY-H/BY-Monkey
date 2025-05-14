@@ -1,0 +1,9 @@
+func Eval(node ast.Node, env *object.Environment) object.Object {
+	switch n := node.(type) {
+	case *ast.IntegerLiteral:
+		return &object.Integer{Value: n.Value}
+	case *ast.Boolean:
+		return nativeBooleanToBooleanObject(n.Value)
+	}
+	return NULL
+}
